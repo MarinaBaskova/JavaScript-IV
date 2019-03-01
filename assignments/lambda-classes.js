@@ -31,6 +31,17 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.name} receives a perfect score on ${subject}`;
     }
+
+    addpoints (student) {
+        //will randomly add or subtract points to a student's grade
+        let random = (Math.floor(Math.random() * 10) + 1);
+        if(random < 5){
+            student.grade -=10;
+        } else {
+            student.grade +=10;
+        }
+        return `${student.name} your new grade is ${student.grade}`;  
+    }
 }
 
 // STUDENT
@@ -41,6 +52,7 @@ class Student extends Person {
         this.previousBackground = studentAttr.previousBackground;
         this.className = studentAttr.className;
         this.favSubjects = studentAttr.favSubjects;
+        this.grade = studentAttr.grade;
     }
     // Methods 
     listsSubjects() {
@@ -54,6 +66,19 @@ class Student extends Person {
     sprintChallenge(subject) {
         return`${this.name} has began sprint challenge on ${subject}`;
     }
+    graduate (student, instructorOrPm) {
+       
+        if(student.grade >= 70) {
+            console.log(`${student.name} your grade is ${student.grade} and you are ready to graduate`);
+        } else {
+            console.log(`${instructorOrPm.name} is grading your assignments to increase the score. Because your current grade is ${status.grade}`);
+            instructorOrPm.addpoints(student);  
+        }
+
+
+    }
+
+
 }
 
 // PROJECT MANAGER
@@ -115,7 +140,8 @@ const fred = new Instructor({
     gender: 'male',
     previousBackground: 'Python',
     className: 'web1',
-    favSubjects: ['Html', 'CSS', 'JavaScript']
+    favSubjects: ['Html', 'CSS', 'JavaScript'],
+    grade: 50
   });
 
   const emily = new Student({
@@ -125,7 +151,8 @@ const fred = new Instructor({
     gender: 'female',
     previousBackground: 'Swift',
     className: 'web1',
-    favSubjects: ['Swift', 'Kotlin', 'Go']
+    favSubjects: ['Swift', 'Kotlin', 'Go'],
+    grade: 70
   });
 
 
@@ -137,7 +164,7 @@ const fred = new Instructor({
     age: 30,
     gender: 'male',
     gradClassName: 'CS2',
-    favInstructor: 'Fred'
+    favInstructor: 'Fred',
   });
 
 
@@ -162,4 +189,8 @@ console.log(oliver.sprintChallenge("HTML"));
 
 console.log(amy.debugsCode(emily, 'JS'));
 
+// console.log(george.addpoints(emily));
+// console.log(emily.grade);
+console.log(oliver.graduate())
 
+//graduate
