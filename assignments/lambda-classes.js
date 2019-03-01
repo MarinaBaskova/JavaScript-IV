@@ -67,13 +67,16 @@ class Student extends Person {
         return`${this.name} has began sprint challenge on ${subject}`;
     }
     graduate (student, instructorOrPm) {
-       
+       while(true){
         if(student.grade >= 70) {
             console.log(`${student.name} your grade is ${student.grade} and you are ready to graduate`);
+            break;
         } else {
-            console.log(`${instructorOrPm.name} is grading your assignments to increase the score. Because your current grade is ${status.grade}`);
+            console.log(`${instructorOrPm.name} is grading your assignments to increase the score. Because your current grade is ${student.grade}`);
             instructorOrPm.addpoints(student);  
         }
+       }
+
 
 
     }
@@ -141,7 +144,7 @@ const fred = new Instructor({
     previousBackground: 'Python',
     className: 'web1',
     favSubjects: ['Html', 'CSS', 'JavaScript'],
-    grade: 50
+    grade: 10
   });
 
   const emily = new Student({
@@ -191,6 +194,6 @@ console.log(amy.debugsCode(emily, 'JS'));
 
 // console.log(george.addpoints(emily));
 // console.log(emily.grade);
-console.log(oliver.graduate())
+console.log(oliver.graduate(oliver, fred));
 
 //graduate
